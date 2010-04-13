@@ -1,0 +1,43 @@
+##What is symfony all about?
+
+Many of you may be familiar with [symfony](http://symfony-project.net/ "The symfony project"), currently one of the best OOP oriented PHP frameworks out there. It's a fast, scalable, immensely powerful and easily extensible framework that naturally guides the developer towards application of the agile development principles (such as [DRY](http://c2.com/cgi/wiki?DontRepeatYourself), [KISS](http://c2.com/cgi/wiki?KeepItSimpleStupid) or the [XP](http://www.extremeprogramming.org/ "") philosophy). Symfony is geared to build [enterprise applications](http://www.symfony-project.org/blog/category/Case+studies), giving full control over the code, configuration and folder structure to the developer.
+
+However, with great power comes great responsibility, as was once said to a young Peter Parker. Symfony leaves all this power in the hands of the developer, but asks a lot in return.
+>**Note about symfony**
+> This tutorial assumes you are already familiar with symfony, and focuses on teaching you about Diem. If you have never used symfony before, head over to the [symfony-project](http://symfony-project.net) and check out their excellent [documentation](http://www.symfony-project.org/doc/1_4/).
+
+## Enter Diem!
+
+Diem builds on top of symfony to provide a user-friendly CMF (Content Management Framework) which will allow you to build common-case scenarios swiftly and without effort. While nothing is predefined in Diem (you start with an empty project just as you do with symfony), it comes bundled with a stellar set of [features](page:14 "Diem features") and offers download-able [plugins](http://diem-project.org/plugins) that will ease your life and make development faster.
+
+
+## So what exactly does Diem offer over symfony?
+
+Diem adds [a growing set of features](page:14 "Diem features") on top of symfony, useful for most projects, which developers would otherwise need to build themselves:
+
+- Complete administration interface, with bundled logging and statistics features
+- Markdown / CKEditor ready for use
+- Efficient Search Engine Optimization through an intuitive JavaScript interface
+- Automatic search engine powered by Zend Lucene
+- Drag&drop based media library with gallery capabilities
+- Developer tools: Project browser, code editors, and even an AJAX Unix console!
+- [and much more...](page:14 "Diem features")
+
+
+## What about performance?
+
+It's the same as a well written symfony site - Diem uses intelligent view caching and utilizes APC if available. All Diem-generated code follows symfony's best practices in order to deliver the best performance your server is capable of.
+
+On top of that you get automatic JavaScript / CSS minification and compression, enchanting the user experience with lower load times and saving you a buck in hosting taxes!
+
+
+## I want to try it first!
+
+Why, of course. We have prepared a demo version of Diem, running an instance of this very site. Feel free to head over and try it for yourself using the links and username/password below, or check out [this page](page:126 "Diem online demo") for more information:
+
+[Demo front-end](http://demo.diem-project.org/)
+
+[Demo admin-panel](http://demo.diem-project.org/admin)
+
+**Username**: admin
+**Password**: admin

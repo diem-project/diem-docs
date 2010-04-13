@@ -1,0 +1,254 @@
+We have a basic blog engine that allows to publish articles, sort and paginate them, with I18n and versioning. Yes, the Article model we created is already translatable and versionable; but we'll talk about that in a later chapter.
+
+We can make our blog even better in a few steps.
+
+##Add a breadcrumb
+Breadcrumbs take little room on the page, and improve the user experience.
+Go on an article page. Open the "Add" menu on the front tool bar, find the navigation/breadcrumb widget, take it and drop it just above the article. A dialog opens.
+![](media:712)
+You can choose the separator sign between two parts of the breadcrumb, whether or not to include the current page, and as always a CSS class.
+[Remember](page:140#the-blog-page:add-the-article-list:drop-the-article-list-widget:css-class), Diem automatically adds a class to each widget, based on its module and component. So the breadcrumb already has a "navigation_bread_crumb" class, that the navigation.css stylesheet uses.
+So we don't need to specify any other CSS class.
+
+##Power up the article pager with ajax
+On the blog page we have an article list. It's paginated, and when we click on a pagination link, the page gets reloaded. What if we used ajax to make it faster, save visitor time and server bandwidth?
+All we have to do is set the pager "ajax" option to true.
+*apps/front/modules/article/actions/components.class.php*
+[code php]
+class articleComponents extends myFrontModuleComponents
+{
+
+  public function executeList()
+  {
+    $query = $this->getListQuery();
+
+    $this->articlePager = $this->getPager($query);
+
+    $this->articlePager->setOption('ajax', true);
+  }
+[/code]
+Save this and try your new ajax-powered pager.
+
+>**Accessibility and Search Engine Optimization**
+>The pagination links still have their normal href attributes. Visitors who don't use JavaScript, as well as crawler bots, still have the normal behavior. This is progressive enhancement: only browser supporting JavaScript benefit from the ajax pager, others get a normal pager.
+
+##Provide RSS feeds
+Ah, this time it's going to be a bit more complicated. Diem provides no automated way to generate feeds. Hopefully, there is a symfony plugin called [sfFeed2Plugin](http://www.symfony-project.org/plugins/sfFeed2Plugin "") which will help us in this task.
+>**Common symfony plugins**
+>Some indispensable symfony plugins are packaged into Diem. You will never need to install nor activate them:
+- sfFeed2Plugin
+- sfImageTransformPlugin
+- sfFormExtraPlugin
+- sfWebBrowserPlugin
+You can find these plugins in *diem/dmCorePlugin/plugins*
+
+This part of the chapter, about RSS feeds, will use nearly no Diem features, and will principally rely on symfony.
+The feed will be the result of a symfony action, rendered in a template.
+###Write the article feed action
+Open the article actions class and write the **executeFeed** method. It will be responsible for building a feed using sfFeed2Plugin API.
+*apps/front/modules/article/actions.class.php*
+[code php]
+class articleActions extends myFrontModuleActions
+{
+
+  public function executeFeed($request)
+  {
+    // Firstly, fetch the articles we will put in the feed
+
+    $articles = Doctrine_Query::create()->from('Article a')
+    // join the translation table to avoid later queries
+    ->withI18n()
+    // get only active articles
+    ->where('aTranslation.is_active = ?', true)
+    // order them by date of creation
+    ->orderBy('aTranslation.created_at DESC')
+    // get only the 20 last articles
+    ->limit(20)
+    // send the query to the database and get our articles
+    ->execute();
+
+    // Then create a sfRssFeed instance and configure it
+    $this->feed = new sfRssFeed();
+
+    $this->feed->setTitle('diem ipsum blog');
+    $this->feed->setAuthorName('Diem developer');
+
+    // here we use £link to get blog page absolute url.
+    // this is the prefered way to get a page url.
+    $blogUrl = $this->getHelper()->link('article/list')->getAbsoluteHref();
+
+    $this->feed->setLink($blogUrl);
+
+    // Add each article to the feed
+    foreach ($articles as $article)
+    {
+      $item = new sfFeedItem();
+
+      $item->setTitle($article->title);
+
+      // use link helper to get the article page url
+      $item->setLink($this->getHelper()->link($article)->getAbsoluteHref());
+      $item->setAuthorName($article->Author);
+      $item->setUniqueId($article->title.' ('.$article->id.')');
+
+      $dateObject = new DateTime($article->createdAt);
+      $item->setPubdate($dateObject->format('U'));
+
+      $item->setDescription(
+        // use media helper to insert an image in the feed
+        $this->getHelper()->media($article->Image)->size(300, 200).
+        $this->getService('markdown')->toHtml($article->body)
+      );
+
+      $this->feed->addItem($item);
+    }
+
+    // disable the layout
+    $this->setLayout(false);
+  }
+}
+[/code]
+This is a lot of code, but easy to understand. The template will be shorter.
+###Write the article feed template
+We now have to render the feed in
+*apps/front/modules/article/templates/feedSuccess.php*
+[code php]
+echo $feed->asXml(ESC_RAW);
+[/code]
+I personnaly love this kind of template. Thanks sfFeed2Plugin.
+###Try it!
+Let's display the feed in our browser. Open the url: http://diem-ipsum/dev.php**/article/feed**.
+
+Oops. Page not found.
+This is because Diem searches a **page** with the slug **article/feed**, and does not find it, because it doesn't exist.
+So, how to access the article/feed action ?
+####Accessing an action: the quick way
+To access a symfony action, just prefix it with "**+/**".
+The blog feed is available at the url http://diem-ipsum/dev.php/**+/article/feed**.
+####Accessing an action: the better way
+Use symfony routing to choose the action url. Open the routing.yml file and add the blog_feed route, with the url "blog/feed":
+*apps/front/config/routing.yml*
+[code]
+blog_feed:
+  url:        /blog/feed
+  params:     { module: article, action: feed }
+[/code]
+The feed can now be accessed at http://diem-ipsum/dev.php/**blog/feed**.
+[Learn more about symfony routing](http://www.symfony-project.org/reference/1_4/en/10-Routing "").
+
+>**symfony routing in Diem**
+>It just works as expected. You can use symfony routing to make your actions available with pretty URLs.
+This is not required for Diem pages, as the slug is stored in database.
+But if you write custom actions like this one, the routing.yml can be used to configure their URLs.
+
+
+###Cache the feed
+For performance reasons, it would be better to cache the feed instead of generating it each time. Symfony allows to do so in a clean and easy way. Declare the feed action as cacheable in article cache config file:
+*apps/front/modules/article/config/cache.yml*
+[code]
+feed:
+  enabled: true
+[/code]
+[Learn more about symfony caching](http://www.symfony-project.org/reference/1_4/en/09-Cache "").
+
+##Show the latest articles in the sidebar
+It would be cool to show the 3 latest articles from every page, above the latest tweets.
+This will require a new method in article components, and a new partial. As usual, we won't write them directly, but will ask Diem to do so.
+###Declare article/listSide component
+Open the modules.yml file and add a **listSide** component to the article module.
+*config/dm/modules.yml*
+[code]
+  Blog:
+
+    article:
+      page:         true
+      components:
+        list:
+        listSide:
+        show:
+[/code]
+>**Conventions in modules.yml**
+>- components beginning with "list" always display a set of records.
+>- components beginning with "show" always display a single record.
+>
+>"Side" has no meaning, we could have called this component "listLittle" or even "listLinks"
+###Generate the code
+By clicking on the refresh button of the front tool bar.
+Have a look to the **executeListSide** method generated in *apps/front/modules/article/actions/components.class.php*, and the partial in *apps/front/modules/article/templates/_listSide.php*.
+###Drop the article/listSide widget
+Find the new article/listSide widget in the front "Add" menu, take it and drop it on the sidebar, above the latest tweets. Choose to render 3 articles per page, and disable top and bottom pager.
+![](media:713)
+Save the widget. It looks nice. We didn't need to write any code.
+###Add a title above
+Just to precise to your visitors they *are* the three latest articles, add a title above them.
+Drag&drop a content/title widget from the "Add" menu above the latest articles. Name it "Hot articles", set the tag to **p** or **H2**, and give it the "t_side" CSS class.
+![](media:714)
+
+##Add a search engine
+Diem allows to easily integrate the powerfull [Zend Lucene Search engine](http://framework.zend.com/manual/en/zend.search.lucene.overview.html "").
+###Create the search index
+Lucene uses a binary index to speed up searches. We need to tell Diem to update it on the admin interface. Go to the search index interface from the admin Tools menu:
+![](media:715)
+Then click the "Reload index" button. The index gets populated with your current pages. You may want to try it by using the search input on the left.
+>**Search index freshness**
+>Diem will NOT update the search index when the site content changes, for performance reasons. It's up to you to keep the index  up to date. A good way to ensure this is to set up a cron task on the server. The admin search index page you are currently on explains how to create this cron task.
+
+We now have a functional search index, let's make it available to our visitors.
+###Display the search form
+####Add the search stylesheet
+First we need yet another stylesheet. Add "search" to the list of loaded stylesheets in
+*apps/front/config/view.yml*
+[code]
+  stylesheets:
+    - layout
+    - typo
+    - navigation
+    - markdown
+    - form
+    - article
+    - search
+[/code]
+Then [download the search.css stylesheet](/uploads/diem-ipsum/search.css) to *web/themeCoolWater/css/search.css*.
+####Drop the search/form widget
+Usability studies tell us to put the search form on the top-right part of the site.
+On the front "Add" menu, find the search/form widget, take it and drop it in the sidebar, just above the "Hot article" widget. Save it.
+###Search something
+Enter a query in your new search form to go on the search results page. If the query you entered can be found in the index, you should see something like:
+![](media:717)
+Ain't it cool? We have a search engine on the site, powered by the excellent Zend Lucene implementation.
+
+- Results are ordered by pertinence. This pertinence factor is displayed near each result as a percentage.
+- Each result has the name of its page. It is described by the page's description meta. We will learn how to change page metas later.
+- Not only articles but **all pages** are found by the search engine. If you search "**contact**", the contact page will obviously be shown with a 100% pertinence factor.
+
+>**Override search templates**
+>You can override the search form and search results templates by copying them from
+> *dmFrontPlugin/modules/dmWidget/templates*
+> to
+> *apps/front/modules/dmWidget/templates*
+
+###Today's bonus
+Wait, there's more! Diem will use the search index to redirect users when they go to a non-existing page.
+
+Example.
+We have a contact page. It's url is http://diem-ipsum/dev.php/**contact**
+Enter this url in your browser: http://diem-ipsum/dev.php/**contact-us**
+
+This page does not exist, and the user should get a 404 page. Instead of that, Diem will use the search engine and **guess the user wants the contact page**. And redirect him.
+
+This technic is very useful for Search Engine Optimization. When you change some pages urls, instead of generating 404 pages, your site will redirect both visitors and crawler bots to the relevant pages. The redirection uses the **301 Moved Permanently** HTTP Status Code.
+
+If Diem cannot find a relevant page, the user gets the 404 page.
+For example, if you go on http://diem-ipsum/**beach-boys**
+You will get a 404 page. Except if your blog talks about good old rock'n roll, of course.
+
+###Improve the 404 page
+While you are on the 404 page, you should make it better. It's a Diem page like the other ones, so we can use widgets.
+By default it already has a content/title widget saying "Page not found". It's better than nothing, but it misses a CSS class.
+Open this widget and give it the "t_big" class.
+![](media:718)
+You may also add a content/text widget to explain to the lost user he shouldn't be here, and give some links to continue browsing your site.
+
+---
+
+On the next chapter we will add comments to the blog.
