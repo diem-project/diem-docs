@@ -204,7 +204,7 @@ We need a H2 saying "Comments" above the comments list. Drag&drop a content/titl
 ![](media:721)
 
 ## Add the comment form
-Visitors need a form to comment our articles. To implement such a form, we of course need a component and a partial, but also a symfony action to validate the form data and save the comment on database.
+Visitors need a form to comment our articles. To implement this form, we of course need a component and a partial, but also a symfony action to validate the form data and save the comment on database.
 ###Declare the articleComment/form component
 Let's declare the component as we use to do. Open the modules.yml config file and add the "form" component to the articleComment module:
 *config/dm/modules.yml*
