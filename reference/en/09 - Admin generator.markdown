@@ -25,11 +25,11 @@ Diem admin generator comes with more features than the symfony one.
 
 - history interface to manage [records versions](#versioning)
 - google-like search
+- advanced search with symfony filters
 - max-per-page selector
 - sort on partial ( if the partial has the same name than a database field )
 - sort on foreign keys
 - [markdown editor with droppable links and medias](page:99), and ajax preview
-- nice theme
 - Save, Save and Add, Save and Back to list, Save and Next buttons
 - fast navigation between objets ( Previous - Next )
 - Bread crumb
@@ -38,8 +38,6 @@ Diem admin generator comes with more features than the symfony one.
 - Automatic fixtures called "Loremization" ([see Tutorial #1: create dummy posts](page:48#rest-a-bit-and-have-some-fun:create-some-dummy-posts))
 - Foreign objects made automatically clickable
 - Drag & drop pages and medias to form fields
-
-One symfony feature has been dropped : the filters. It has been replaced by a single-field search engine, that searches into all model fields.
 
 Diem admin interface is heavily inspired by the [Total Usability Blog](http://totalusability.posterous.com/) and the Gmail interface.
 

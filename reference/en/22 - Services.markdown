@@ -230,6 +230,9 @@ Basic HTTP client. Overrides sfWebBrowser.
 ###data_load
 Responsible for loading default data in the project
 
+###tool_bar_view
+Responsible for rendering admin & front toolbar. Implemented by dmAdminToolBarView on admin app, and by dmFrontToolBarView on front app. Use your apps/admin/config/dm/services.yml or apps/front/config/dm/services.yml file to change the class and modify the tool bar.
+
 ##Admin
 The admin services can only be used in admin application.
 To extend them, use the apps/admin/config/dm/services.yml file.

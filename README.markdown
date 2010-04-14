@@ -1,3 +1,3 @@
-Documentation for Diem 5.0
+Documentation for Diem 5.1
 
-http://diem-project.org/diem-5-0
+http://diem-project.org/diem-5-1

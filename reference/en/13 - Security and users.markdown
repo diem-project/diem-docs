@@ -298,3 +298,26 @@ echo $form;
 ###Drop the dmUser/editEmail widget
 On the front tool bar, click the refresh project button to clear the cache and apply all our modifications.
 The last and easier step is of course to drag&drop our new dmUser/editEmail widget from the "Add" menu to a page.
+
+## Add the forgot password feature
+Since 5.1, Diem provides ability to easily send new passwords to your users. The user provides an email, and if this email exists, an new password is generated and sent to this email.
+You need a server that is able to send mails to use this feature.
+
+### Create the "forgot password" page
+From the front tool bar, create a new page that will contain the forgot password form.
+![](media:776)
+Save the page, then click the "Edit page" button of the front tool bar to change the page action to "forgotPassword". This will allow to create a link to this page, later, with _link('main/forgotPassword')
+![](media:777)
+
+###Add the dmUser/forgotPassword widget
+Find the dmUser/forgotPassword widget in the front "Add" menu, drag it and drop it to the page content.
+As this widget contains a form, you need to reload the page to make it appear.
+
+###Add a link to this page
+You want to add a link to this page to let the user request a new password. Create the link in one of your templates this way:
+[code php]
+echo _link('main/forgotPassword')->text('Forgot your password?');
+[/code]
+
+###Customize the mail sent
+Find the "dm_user_forgot_password" mail template in Tools->Mail templates and customize it.
