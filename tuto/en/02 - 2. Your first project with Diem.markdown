@@ -77,7 +77,7 @@ Before we dive into Diem layouts, download the following sample images into the 
 It was easy, wasn't it? With just those few simple steps you have a running Diem installation! Two applications have been created, a publicly accessible  **front** and a secured back-end **admin** (you can log in now with the password from the installation at *admin_dev.php* and look around).
 
 ## Building layouts with Diem
-We are now going to learn how to build layouts with Diem's front JavaScript console, but before we do that we need to have a design. The [coolwater style](http://www.styleshout.com/templates/preview/CoolWater1-0/index.html "") from [styleshout](http://styleshout.com "") is free and suits our needs perfectly.
+We are now going to learn how to build layouts with Diem's front JavaScript console, but before we do that we need to have a design. The [coolwater style](http://www.styleshout.com/templates/preview/CoolWater11/ "") from [styleshout](http://styleshout.com "") is free and suits our needs perfectly.
 
 
 ### Set up the theme
