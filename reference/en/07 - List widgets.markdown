@@ -41,6 +41,23 @@ Content:
 [/code]
 When adding this widget to the page, the edition dialog shows a select where you can choose the category to filter by. If Diem can guess the current category from the page context, it will propose a [contextual] entry in the select. By choosing [contextual], the category used will change depending on the page.
 
+### Available filters
+
+You can use foreign modules and local boolean fields as filters:
+[code]
+Content:
+  Blog:
+
+    category:
+
+    post:
+      components:
+        listByCategory:
+          filters:
+            - category    # use the category module to filter with
+            - is_funny    # use the is_funny boolean field of the Post model
+[/code]
+
 ### Access the category filtered with
 
 
