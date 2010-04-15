@@ -134,26 +134,33 @@ When you create your project, Diem will automatically create this layout for you
 
   <div class="dm_layout">
 
-    <?php echo $helper->renderArea('top', '.clearfix') ?>
+    <?php echo $helper->renderArea('layout.top', '.clearfix') ?>
 
     <div class="dm_layout_center clearfix">
 
-      <?php echo $helper->renderArea('left') ?>
+      <?php echo $helper->renderArea('layout.left') ?>
 
-      <?php echo $helper->renderArea('content') ?>
+      <?php echo $helper->renderArea('page.content') ?>
 
-      <?php echo $helper->renderArea('right') ?>
+      <?php echo $helper->renderArea('layout.right') ?>
 
     </div>
 
-    <?php echo $helper->renderArea('bottom', '.clearfix') ?>
+    <?php echo $helper->renderArea('layout.bottom', '.clearfix') ?>
 
   </div>
 
 </div>
 [/code]
 
-The default Diem pageSuccess.php layout is split into five Areas: top, left, content, right and bottom. The purpose of Areas is to contain widgets. Each widget is actually a simple symfony component rendered through a partial. You set up these widgets through an intuitive visual interface, but more on that later. Diem comes bundled with the most often used widgets and you can easily extend it with your own. To learn more about this read the [Diem layout documentation](page:65).
+The default Diem pageSuccess.php layout is split into five Areas:
+layout.top, layout.left, content, layout.right and layout.bottom.
+The purpose of Areas is to contain widgets.
+Areas prefixed with "layout." can be reused by several pages; Areas prefixed with "page." are specific to the page.
+Each widget is actually a simple symfony component rendered through a partial.
+You set up these widgets through an intuitive visual interface, but more on that later.
+Diem comes bundled with the most often used widgets and you can easily extend it with your own.
+To learn more about this read the [Diem layout documentation](page:65).
 
 We have no need for the left area for this site, so let's remove it:
 [code php]
@@ -163,17 +170,17 @@ We have no need for the left area for this site, so let's remove it:
 
   <div class="dm_layout">
 
-    <?php echo $helper->renderArea('top', '.clearfix') ?>
+    <?php echo $helper->renderArea('layout.top', '.clearfix') ?>
 
     <div class="dm_layout_center clearfix">
 
-      <?php echo $helper->renderArea('content') ?>
+      <?php echo $helper->renderArea('page.content') ?>
 
-      <?php echo $helper->renderArea('right') ?>
+      <?php echo $helper->renderArea('layout.right') ?>
 
     </div>
 
-    <?php echo $helper->renderArea('bottom', '.clearfix') ?>
+    <?php echo $helper->renderArea('layout.bottom', '.clearfix') ?>
 
   </div>
 
