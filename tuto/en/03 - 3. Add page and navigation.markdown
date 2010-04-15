@@ -97,7 +97,7 @@ Click the "Save and close" button to see your heading and body text applied.
 Now we need a way to style the text on the page.
 
 ###Markdown Editor
-There is a (markdown)[http://daringfireball.net/projects/markdown/] editor built into the Text widget. The markdown editor is the default text editor in Diem. It allows to write content for the web in an easy and secure way.
+There is a [markdown](http://daringfireball.net/projects/markdown/) editor built into the Text widget. The markdown editor is the default text editor in Diem. It allows to write content for the web in an easy and secure way.
 As no HTML code is allowed inside, we can be sure the site HTML code will never get accidentally broken.
 As no styling options are available, only the CSS writer can decide how the generated HTML is styled.
 
