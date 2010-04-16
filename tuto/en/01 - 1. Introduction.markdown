@@ -41,3 +41,11 @@ Why, of course. We have prepared a demo version of Diem, running an instance of 
 
 **Username**: admin
 **Password**: admin
+
+## See Diem Ipsum source code on GitHub
+
+The Diem Ipsum website source code is hosted on GitHub.
+Each tutorial page lives in a Git branch.
+[See Diem Ipsum source code on GitHub](
+
+See the current source code on Github: [Diem Ipsum 5.0](http://github.com/diem-project/diem-ipsum-5.0)
