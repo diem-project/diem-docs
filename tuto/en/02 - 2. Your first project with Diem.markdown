@@ -261,4 +261,4 @@ Yes, we are using plain HTML because for now the footer doesn't need dynamic con
 We have learned how to set up Diem and are well on the way to building our first Diem project. We now have a grasp of Diem themes, templates, widgets and helpers. Tomorrow we will tackle page creation with Diem, but for now let's take a step back and look at what we have accomplished:
 ![](media:678)
 
-See the current source code on Github: [Diem Ipsum 5.0 Page 2](http://github.com/diem-project/diem-ipsum-5.0/tree/page-2)
+See the current source code on Github: [Diem Ipsum 5.1 Page 2](http://github.com/diem-project/diem-ipsum-5.1/tree/page-2)

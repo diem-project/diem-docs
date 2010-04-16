@@ -271,4 +271,4 @@ class articleCommentActions extends myFrontModuleActions
 ###About the symfony action
 
 
-See the current source code on Github: [Diem Ipsum 5.0 Page 7](http://github.com/diem-project/diem-ipsum-5.0/tree/page-7)
+See the current source code on Github: [Diem Ipsum 5.1 Page 7](http://github.com/diem-project/diem-ipsum-5.1/tree/page-7)

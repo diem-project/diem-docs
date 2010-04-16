@@ -365,4 +365,4 @@ We now have our basic blog engine. In the next chapter we will improve it:
 - show the latest articles in the sidebar
 - add a powerful search engine
 
-See the current source code on Github: [Diem Ipsum 5.0 Page 5](http://github.com/diem-project/diem-ipsum-5.0/tree/page-5)
+See the current source code on Github: [Diem Ipsum 5.1 Page 5](http://github.com/diem-project/diem-ipsum-5.1/tree/page-5)

@@ -167,4 +167,4 @@ See the current [list of Diem plugins](page:66).
 ---
 That's all for this chapter. On the next one, serious things will begin. We will create our own specific blog engine, without relying on any plugin.
 
-See the current source code on Github: [Diem Ipsum 5.0 Page 4](http://github.com/diem-project/diem-ipsum-5.0/tree/page-4)
+See the current source code on Github: [Diem Ipsum 5.1 Page 4](http://github.com/diem-project/diem-ipsum-5.1/tree/page-4)

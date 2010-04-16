@@ -159,4 +159,4 @@ We have now created the content for our homepage:
 
 In the next chapter we will see how to use Diem plugins to add a twitter reader in the sidebar, and a contact page with a form.
 
-See the current source code on Github: [Diem Ipsum 5.0 Page 3](http://github.com/diem-project/diem-ipsum-5.0/tree/page-3)
+See the current source code on Github: [Diem Ipsum 5.1 Page 3](http://github.com/diem-project/diem-ipsum-5.1/tree/page-3)
