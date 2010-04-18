@@ -183,9 +183,9 @@ Sometimes we want do display a link not to a page but to a symfony action.
 The syntax is **+/module/action**
 [code php]
 // symfony
-link_to('Logout', 'dmAuth/signout')
+link_to('Logout', 'dmUser/signout')
 //Diem
-_link('+/dmAuth/signout')->text('Logout')
+_link('+/dmUser/signout')->text('Logout')
 [/code]
 
 #### Link to a record
