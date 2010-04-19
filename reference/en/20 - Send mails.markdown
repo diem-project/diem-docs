@@ -144,3 +144,10 @@ $mail->send(); // send the message
 #### Use events
 
 You can listen to the [dm.mail.pre_send event](page:30#events-list:core-events:dm-mail-pre_send) to do something just before a mail is sent, or the [dm.mail.post_send event](page:30#events-list:core-events:dm-mail-post_send) to do something just after a mail is sent.
+
+## Sent mails log
+
+All sent mails are logged and can be reviewed in Admin->System->Sent mails.
+This is very useful in development environment, when the Swift transport is deactivated.
+Even if mails are not relay sent to the addressee, they are logged, so you can inspect them precisely.
+Also, you can see Diem send mails in real time on the admin homepage, in the Events box.
