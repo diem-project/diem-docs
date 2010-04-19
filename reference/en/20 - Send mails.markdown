@@ -84,7 +84,7 @@ You can also use a Doctrine record or a Doctrine form.
 In this case, the table columns are used as keys, and the object values as values.
 
 [code php]
-->addValues($user); // $user is an instance of the DmUser model, which extends DoctrineRecord
+->addValues($user) // $user is an instance of the DmUser model, which extends DoctrineRecord
 /*
  * Values available in the template:
  * %username%, %email%, %is_active%, ...
@@ -104,3 +104,43 @@ You can call the addValues() method several times, and pass it a prefix as a sec
  * %user_name%, %user_email%, %user_is_active%, %petition_name%, %petition_text%, %petition_url%
  */
 [/code]
+
+### Advanced usage
+
+#### Internals
+
+When you call
+[code php]
+$mail = $this->getService('mail')
+->setTemplate('my_mail_template_code');
+[/code]
+you create an instance of dmMail. A dmMail instance has:
+- a DmMailTemplate
+- values to populate the template
+- a Swift_Message instance
+
+When you call
+[code php]
+$mail->send();
+[/code]
+
+The dmMail->render() method is automatically called.
+The render() method uses the DmMailTemplate and the values to fill the Swift_Message attributes, then the message is sent using Swift.
+
+#### Access the Swift_Message
+
+If you want to modify the Swift_Message before sending it, you can do:
+
+[code php]
+$mail = $this->getService('mail')
+->setTemplate('my_mail_template_code')
+->addValues(...)
+->render();
+$message = $mail->getMessage(); // @return Swift_Message the message instance
+// manipulate the $message
+$mail->send(); // send the message
+[/code]
+
+#### Use events
+
+You can listen to the [dm.mail.pre_send event](page:30#events-list:core-events:dm-mail-pre_send] to do something just before a mail is sent, or the [dm.mail.post_send event](page:30#events-list:core-events:dm-mail-post_send] to do something just after a mail is sent.

@@ -151,6 +151,14 @@ fired by **dmDoctrineTable** just before returing seo columns. With this event y
 parameters: none
 value: array( seo_column )
 
+####dm.mail.pre_send
+fired by **dmMail** just before sending a mail.
+parameters: array('mailer' => sfMailer, 'message' => Swift_Message, 'template' => DmMailTemplate)
+
+####dm.mail.post_send
+fired by **dmMail** just after sending a mail.
+parameters: array('mailer' => sfMailer, 'message' => Swift_Message, 'template' => DmMailTemplate)
+
 ### Admin events
 
 Admin events are only notified in admin application.
