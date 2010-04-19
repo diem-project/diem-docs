@@ -14,8 +14,6 @@ The goal is to let a non-developper manage sent mails, by moving all mail attrib
 
 ### Send a mail using a mail template
 
-#### Write PHP code
-
 Mails are generally sent from a symfony action.
 Suppose you want to send a mail to a registered user when (s)he signs up a petition.
 
@@ -32,30 +30,30 @@ $this->getService('mail')                   // get a dmMail instance
 
 The first time your run this code, the "sign_petition_confirmation" mail template does not exist, and gets created automatically.
 
-#### Configure the template
+### Configure the template
 
 Now you need to modify it in Admin->Tools->Mail templates. A Mail template has the following fields:
 
-##### Name
+#### Name
 The unique name of the template, used in your PHP code to identify it.
 Ex: "sign_petition_confirmation"
 
-##### Description
+#### Description
 Short description to help you remember what this mail template is used to.
 Ex: "Congrat a user who just signed up a petition"
 
-##### Active
+#### Active
 Whether to send emails that use this template or not.
 
-##### Subject
+#### Subject
 The one-line mail subject.
 Ex: "Hello, dear %username%"
 
-##### Body
+#### Body
 The mail body.
 Ex: "Thanks for signing the petition %petition_name%!"
 
-##### From Email
+#### From Email
 The "from" header of the mail.
 Ex: "webmaster@mysite.com"
 
@@ -63,4 +61,46 @@ Ex: "webmaster@mysite.com"
 The email, or list of emails, that will receive the mail.
 Ex: "%user_email%"
 
-You can use the variables declared in the PHP code: %user_name%, %user_email%, %petition_name%
+You can use the variables declared in the PHP code: %user_name%, %user_email%, %petition_name%.
+Other advanced fields are available to send carbon copies and/or customize the mail headers.
+
+### More ways to pass values
+
+In the previous example, we pass values to the template with a simple PHP array:
+
+[code php]
+->addValues(array(                          // add values to populate the template
+  'user_name'       => $user->username,
+  'user_email'      => $user->email,
+  'petition_name'   => $petition->name
+))
+/*
+ * Values available in the template:
+ * %user_name%, %user_email%, %petition_name%
+ */
+[/code]
+
+You can also use a Doctrine record or a Doctrine form.
+In this case, the table columns are used as keys, and the object values as values.
+
+[code php]
+->addValues($user); // $user is an instance of the DmUser model, which extends DoctrineRecord
+/*
+ * Values available in the template:
+ * %username%, %email%, %is_active%, ...
+ */
+[/code]
+
+You can call the addValues() method several times, and pass it a prefix as a second argument:
+
+[code php]
+->addValues($user, 'user_')
+->addValues($petition, 'petition_')
+->addValues(array(
+  'petition_url' => $this->getHelper()->link($petition)->getAbsoluteHref()
+))
+/*
+ * Values available in the template:
+ * %user_name%, %user_email%, %user_is_active%, %petition_name%, %petition_text%, %petition_url%
+ */
+[/code]
