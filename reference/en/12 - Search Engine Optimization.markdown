@@ -128,7 +128,7 @@ So Diem provides a redirection interface to allow you to easily and safely creat
 
 When adding a redirection, we see to fields :
 
-- **Old url** the bad url we want to redirect, without the domain name
+- **Old url** the bad url we want to redirect, without the domain name. Since Diem 5.1, wildcards (*) are accepted to match a range of urls.
 - **New url** where we will be redirected.
 
 ### to a static url
