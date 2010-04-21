@@ -132,9 +132,6 @@ To get latest updates from diem-project official repo, run:
 [code]
 git pull official 5.1
 [/code]
-[code]
-git remote -v
-[/code]
 
 ### Contribute to the diem-project repo
 
