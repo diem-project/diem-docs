@@ -309,6 +309,9 @@ Shows a list of records related to another one.
 ###log_view
 Responsible for rendering a dmLog instance.
 
+###tool_bar_view
+Responsible for rendering the admin tool bar
+
 ##Front
 The front services can only be used in front application.
 To extend them, use the apps/front/config/dm/services.yml file.
@@ -390,3 +393,6 @@ Responsible for building and rendering the front code editor file menu
 
 ###front_pager_view
 Responsible for rendering a sfPager with pagination links
+
+###tool_bar_view
+Responsible for rendering the front tool bar
