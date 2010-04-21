@@ -149,6 +149,38 @@ foreach($article->getDmGallery() as $media)
 }
 [/code]
 
+### Configuration
+
+#### Change accepted mime types
+By default a DmGallery only accepts web images like jpg and png.
+If you want to allow using other file types, you can change the form class:
+*config/doctrine/schema.yml*
+[code]
+Article:
+  actAs:
+    DmGallery:
+      formClass: MyDmMediaForm
+[/code]
+Then in this class, choose the allowed mime types:
+*lib/MyDmMediaForm.php*
+[code php]
+class MyDmMediaForm extends DmMediaForm
+{
+  public function configure()
+  {
+    parent::configure();
+
+    // choose mime types allowed
+    $this->setMimeTypeWhiteList(array(
+      'image/jpeg',
+      'image/png',
+      'video/x-flv'
+    ));
+  }
+}
+[/code]
+In this example, both web images and FLV videos are accepted.
+
 ##DmTaggable
 
 Makes easy to add tags to a record.
