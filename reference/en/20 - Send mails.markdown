@@ -47,7 +47,7 @@ Whether to send emails that use this template or not.
 
 #### Subject
 The one-line mail subject.
-Ex: "Hello, dear %username%"
+Ex: "Hello, dear %user_name%"
 
 #### Body
 The mail body.
