@@ -73,12 +73,12 @@ Thanks to Git and GitHub, it's very easy to contribute to Diem code or documenta
 
 ### Get a GitHub account
 
-It's free: https://github.com/signup/free.
+It's free: [https://github.com/signup/free](https://github.com/signup/free).
 In this doc I'll consider your GitHub username is "marcel".
 
 ### Fork diem-project/diem repo
 
-Go on http://github.com/diem-project/diem and click the Fork button.
+Go on [http://github.com/diem-project/diem](http://github.com/diem-project/diem) and click the Fork button.
 You now have a copy of the repository in your GitHub account, at http://github.com/marcel/diem.
 You can do whatever you want on this repo. Later, you can request to merge your changes in the official diem/project/diem repo.
 
