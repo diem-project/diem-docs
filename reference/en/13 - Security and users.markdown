@@ -137,7 +137,7 @@ class dmUserActions extends BasedmUserActions
    */
   public function executeFormWidget(dmWebRequest $request)
   {
-    $form = $this->forms['DmUser'];
+    $form = new DmUserForm();
 
     if ($request->isMethod('post') && $request->hasParameter($form->getName()))
     {
@@ -163,6 +163,9 @@ class dmUserActions extends BasedmUserActions
         $this->redirectRegisteredUser($request);
       }
     }
+
+    // pass the form to the component
+    $this->forms['DmUser'] = $form;
   }
 }
 [/code]
