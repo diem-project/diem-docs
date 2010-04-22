@@ -101,7 +101,7 @@ You can call the addValues() method several times, and pass it a prefix as a sec
 ))
 /*
  * Values available in the template:
- * %user_name%, %user_email%, %user_is_active%, %petition_name%, %petition_text%, %petition_url%
+ * %user_username%, %user_email%, %user_is_active%, %petition_name%, %petition_text%, %petition_url%
  */
 [/code]
 
