@@ -61,8 +61,20 @@ Ex: "webmaster@mysite.com"
 The email, or list of emails, that will receive the mail.
 Ex: "%user_email%"
 
-You can use the variables declared in the PHP code: %user_name%, %user_email%, %petition_name%.
 Other advanced fields are available to send carbon copies and/or customize the mail headers.
+
+### The variables
+
+When you configure a mail template with the admin interface, you see the available variables you can use in the template fields.
+With the current example, you can use the variables: %user_name%, %user_email%, %petition_name%.
+You don't need to manage manually this list of available variables. They are automatically updated if needed when you render a mail, using the values array:
+[code php]
+->addValues(array(                          // add values to populate the template
+  'user_name'       => $user->username,
+  'user_email'      => $user->email,
+  'petition_name'   => $petition->name
+))
+[/code]
 
 ### More ways to pass values
 
@@ -136,8 +148,25 @@ $mail = $this->getService('mail')
 ->setTemplate('my_mail_template_code')
 ->addValues(...)
 ->render();
+
 $message = $mail->getMessage(); // @return Swift_Message the message instance
 // manipulate the $message
+
+$mail->send(); // send the message
+[/code]
+
+#### Attach files
+
+As you can access the Swift_Message, you can attach files normally:
+[code php]
+$mail = $this->getService('mail')
+->setTemplate('my_mail_template_code')
+->addValues(...)
+->render();
+
+// Get the Swift_Message and add an attachement
+$mail->getMessage()->attach(Swift_Attachment::fromPath('path/to/file.pdf'));
+
 $mail->send(); // send the message
 [/code]
 
