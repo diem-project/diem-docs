@@ -223,7 +223,7 @@ Project:
       components:
         editEmail:
 [/code]
-###Instanciate, handle and display the form
+###Instantiate, handle and display the form
 ####Action
 Form handling must always be done in actions. Because it can result on database modifications and HTTP redirections, handling a form must be done before rendering anything. That's the purpose of symfony actions.
 *apps/front/modules/dmUser/actions/actions.class.php*
@@ -302,11 +302,11 @@ echo $form;
 On the front tool bar, click the refresh project button to clear the cache and apply all our modifications.
 The last and easier step is of course to drag&drop our new dmUser/editEmail widget from the "Add" menu to a page.
 
-## Add the forgot password feature
+## Add the "Forgot password" feature
 Since 5.1, Diem provides ability to easily send new passwords to your users. The user provides an email, and if this email exists, an new password is generated and sent to this email.
 You need a server that is able to send mails to use this feature.
 
-### Create the "forgot password" page
+### Create the "Forgot password" page
 From the front tool bar, create a new page that will contain the forgot password form.
 ![](media:776)
 Save the page, then click the "Edit page" button of the front tool bar to change the page action to "forgotPassword". This will allow to create a link to this page, later, with _link('main/forgotPassword')
