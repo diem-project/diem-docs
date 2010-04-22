@@ -220,7 +220,7 @@ Project:
       components:
         editEmail:
 [/code]
-###Instanciate, handle and display the form
+###Instantiate, handle and display the form
 ####Action
 Form handling must always be done in actions. Because it can result on database modifications and HTTP redirections, handling a form must be done before rendering anything. That's the purpose of symfony actions.
 *apps/front/modules/dmUser/actions/actions.class.php*
