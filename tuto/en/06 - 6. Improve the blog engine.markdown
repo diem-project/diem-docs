@@ -212,6 +212,10 @@ Then [download the search.css stylesheet](/uploads/diem-ipsum/search.css) to *we
 ####Drop the search/form widget
 Usability studies tell us to put the search form on the top-right part of the site.
 On the front "Add" menu, find the search/form widget, take it and drop it in the sidebar, just above the "Hot article" widget. Save it.
+####Drop the search/results widget
+So now you can search, but the results don't have any way to be presented to the user.
+Complete a search and you will end up on a blank search results page.
+On the front "Add" menu, drag the search/results widget and drop it into the main page zone.
 ###Search something
 Enter a query in your new search form to go on the search results page. If the query you entered can be found in the index, you should see something like:
 ![](media:717)
