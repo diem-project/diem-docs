@@ -3,6 +3,71 @@ Every part of Diem is called a service. And you can replace and extend each of t
 
 Learn about the [Symfony Dependency Injection Container](http://components.symfony-project.org/dependency-injection/)
 
+## Use Diem services
+
+You can take advantage of Diem services, and create your own ones.
+
+### Access the service container
+
+To get a service instance, you need the service container.
+
+#### From an action
+
+[code php]
+$this->getService('service_name');
+[/code]
+
+#### From a component
+
+[code php]
+$this->getService('service_name');
+[/code]
+
+#### From a model (instance of dmDoctrineRecord)
+
+The service container is available in your models.
+In some rare cases, like during symfony tasks that don't create a context instance,
+the service container may not be loaded. That's why you should use this syntax
+to verify the service you try to use is available:
+[code php]
+if($service = $this->getService('service_name'))
+{
+  // use the service
+}
+[/code]
+
+#### From a form (instance of dmFormDoctrine)
+
+Like for the model:
+[code php]
+if($service = $this->getService('service_name'))
+{
+  // use the service
+}
+[/code]
+
+#### From a configuration class (instanceof ProjectConfiguration)
+
+From the project configuration, as well as the application configuration or a plugin configuration,
+you don't have access to the service container. But you can listen to an event
+that is fired when the service container is loaded, and get it at this time:
+
+[code php]
+public function configure()
+{
+  $this->dispatcher->connect('dm.context.loaded', array($this, 'listenToContextLoadedEvent'));
+}
+
+// when the context is loaded
+public function listenToContextLoadedEvent(sfEvent $event)
+{
+  // get the service container from the context
+  $serviceContainer = $event->getSubject()->getServiceContainer();
+
+  $service = $serviceContainer->getService('service_name');
+}
+[/code]
+
 ##Replace a Diem service
 
 Let's suppose we want to change the way Diem detects browsers. This is done with the *browser_detection* service. We will tell Diem to use another class for the browser detection service in
