@@ -177,7 +177,7 @@ echo dm_get_widget('main', 'header', array(
 Next example is to include your foo/show widget, and to pass a recordId parameter to the component.
 [code php]
 echo dm_get_widget('foo', 'show', array(
-  'recordId' => 'id'  //pass a recordId to the foo/show component
+  'recordId' => $id  //pass a recordId to the foo/show component
 ));
 [/code]
 
