@@ -57,21 +57,21 @@ eg. "Thanks for signing the petition %petition_name%!"
 The "from" header of the mail.
 eg.
 
-    "webmaster@mysite.com"
+    webmaster@mysite.com
 
-or
+you can use several email adresses, both static and variables one, and the "Name <email>" syntax.
 
-    Sergio <webmaster@mysite.com>"
+    other-mail@domain.com, %user_email%, Sergio <sergio@mysite.com>
 
 #### To Email
 The email, or list of emails, that will receive the mail.
 eg.
 
-    "%user_email%"
+    %user_email%
 
-or
+you can use several email adresses, both static and variables one, and the "Name <email>" syntax.
 
-    "Sergio <sergio@mysite.com>, other-mail@domain.com"
+    other-mail@domain.com, %user_email%, Sergio <sergio@mysite.com>
 
 Other advanced fields are available to send carbon copies and/or customize the mail headers.
 
