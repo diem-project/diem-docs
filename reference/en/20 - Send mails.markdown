@@ -59,7 +59,7 @@ eg.
 
     webmaster@mysite.com
 
-you can use several email adresses, both static and variables one, and the "Name <email>" syntax.
+you can use several email adresses, both static and variables one, and provide both name and email.
 
     other-mail@domain.com, %user_email%, Sergio <sergio@mysite.com>
 
@@ -69,7 +69,7 @@ eg.
 
     %user_email%
 
-you can use several email adresses, both static and variables one, and the "Name <email>" syntax.
+you can use several email adresses, both static and variables one, and provide both name and email.
 
     other-mail@domain.com, %user_email%, Sergio <sergio@mysite.com>
 
