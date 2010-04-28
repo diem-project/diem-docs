@@ -56,10 +56,12 @@ Ex: "Thanks for signing the petition %petition_name%!"
 #### From Email
 The "from" header of the mail.
 Ex: "webmaster@mysite.com"
+Ex: "Sergio <webmaster@mysite.com>"
 
 #### To Email
 The email, or list of emails, that will receive the mail.
 Ex: "%user_email%"
+Ex: "Sergio <sergio@mysite.com>, other-mail@domain.com"
 
 Other advanced fields are available to send carbon copies and/or customize the mail headers.
 
