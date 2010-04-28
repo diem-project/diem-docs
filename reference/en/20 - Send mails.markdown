@@ -36,32 +36,34 @@ Now you need to modify it in Admin->Tools->Mail templates. A Mail template has t
 
 #### Name
 The unique name of the template, used in your PHP code to identify it.
-Ex: "sign_petition_confirmation"
+eg. "sign_petition_confirmation"
 
 #### Description
 Short description to help you remember what this mail template is used to.
-Ex: "Congrat a user who just signed up a petition"
+eg. "Congrat a user who just signed up a petition"
 
 #### Active
 Whether to send emails that use this template or not.
 
 #### Subject
 The one-line mail subject.
-Ex: "Hello, dear %user_name%"
+eg. "Hello, dear %user_name%"
 
 #### Body
 The mail body.
-Ex: "Thanks for signing the petition %petition_name%!"
+eg. "Thanks for signing the petition %petition_name%!"
 
 #### From Email
 The "from" header of the mail.
-Ex: "webmaster@mysite.com"
-Ex: "Sergio <webmaster@mysite.com>"
+eg.
+    "webmaster@mysite.com"
+    Sergio <webmaster@mysite.com>"
 
 #### To Email
 The email, or list of emails, that will receive the mail.
-Ex: "%user_email%"
-Ex: "Sergio <sergio@mysite.com>, other-mail@domain.com"
+eg.
+    "%user_email%"
+    "Sergio <sergio@mysite.com>, other-mail@domain.com"
 
 Other advanced fields are available to send carbon copies and/or customize the mail headers.
 
