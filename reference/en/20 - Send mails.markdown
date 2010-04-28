@@ -58,6 +58,9 @@ The "from" header of the mail.
 eg.
 
     "webmaster@mysite.com"
+
+or
+
     Sergio <webmaster@mysite.com>"
 
 #### To Email
@@ -65,6 +68,9 @@ The email, or list of emails, that will receive the mail.
 eg.
 
     "%user_email%"
+
+or
+
     "Sergio <sergio@mysite.com>, other-mail@domain.com"
 
 Other advanced fields are available to send carbon copies and/or customize the mail headers.
