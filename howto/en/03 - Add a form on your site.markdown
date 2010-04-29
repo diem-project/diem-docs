@@ -182,7 +182,7 @@ class contactActions extends dmFrontModuleActions
 
   public function executeFormWidget(dmWebRequest $request)
   {
-    $form = $this->forms['Contact'];
+    $form = new ContactForm();
 
     if ($request->isMethod('post') && $form->bindAndValid($request))
     {
@@ -192,6 +192,9 @@ class contactActions extends dmFrontModuleActions
 
       $this->redirectBack();
     }
+
+    // pass the form to the component using the form manager
+    $this->forms['Contact'] = $form;
   }
 
 }
