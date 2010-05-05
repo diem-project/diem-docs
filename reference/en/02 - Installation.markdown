@@ -2,7 +2,7 @@ As a full stack CMF/CMS, Diem is designed to be used from the beginning of your 
 You should create the project with Diem, instead of plugging Diem into an existing project.
 
 ## Download Diem
-Get the latest package or grab the SVN trunk on the [download page](page:6).
+Get the latest package on the [download page](page:6).
 Diem embeds symfony, and will live outside of your project.
 
 ## Create the project
