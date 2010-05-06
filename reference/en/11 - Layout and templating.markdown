@@ -97,6 +97,16 @@ echo _close('div');                                // close the page div
 
 This file applies on all pages and all layouts. It gives full control on html flow and allows to insert non-Diem stuff.
 
+###Areas customization
+
+Areas specified in the above example are the default ones, but you can create as many areas you want, just use unique name for them. Additionally you can specify areas binding to the layout or pages by using prefix along with area's name:
+[code php]
+echo $helper->renderArea('layout.content');
+echo $helper->renderArea('page.right');
+[/code]
+
+On this example above the content area will be the same for all pages using our layout, and right area will be different for pages using this layout.
+
 ##HTML map
 
 In this map we can see how each front page is built.
