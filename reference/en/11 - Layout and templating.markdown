@@ -71,27 +71,27 @@ Here is the default pageSuccess.php:
 // open the page div
 echo _open('div#dm_page'.($sf_user->getIsEditMode() ? '.edit' : ''));
 
-echo $helper->renderAccessLinks();             // render accessibility links
+echo $helper->renderAccessLinks();                  // render accessibility links
 
-  echo _tag('div.dm_layout',                      // open the layout div
+  echo _tag('div.dm_layout',                        // open the layout div
 
-    $helper->renderArea('top', '.clearfix').   // render TOP Area
+    $helper->renderArea('layout.top', '.clearfix'). // render TOP Area
 
-    _tag('div.dm_layout_center.clearfix',         // open the layout_center div
+    _tag('div.dm_layout_center.clearfix',           // open the layout_center div
 
-      $helper->renderArea('left').             // render LEFT Area
+      $helper->renderArea('layout.left').           // render LEFT Area
 
-      $helper->renderArea('content').          // render page content Area
+      $helper->renderArea('page.content').          // render page content Area
 
-      $helper->renderArea('right')             // render right Area
+      $helper->renderArea('layout.right')           // render right Area
 
-    ).                                         // close the layout_center div
+    ).                                              // close the layout_center div
 
-    $helper->renderArea('bottom', '.clearfix') // render the BOTTOM Area
+    $helper->renderArea('layout.bottom', '.clearfix') // render the BOTTOM Area
 
-  );                                           // close the layout div
+  );                                                // close the layout div
 
-echo _close('div');                                // close the page div
+echo _close('div');                                 // close the page div
 [/code]
 *This file uses [Diem template helpers](page:45)*
 
@@ -101,11 +101,11 @@ This file applies on all pages and all layouts. It gives full control on html fl
 
 Areas specified in the above example are the default ones, but you can create as many areas you want, just use unique name for them. Additionally you can specify areas binding to the layout or pages by using prefix along with area's name:
 [code php]
-echo $helper->renderArea('layout.content');
-echo $helper->renderArea('page.right');
+echo $helper->renderArea('layout.banner');
+echo $helper->renderArea('page.otherPageSpecificArea');
 [/code]
 
-On this example above the content area will be the same for all pages using our layout, and right area will be different for pages using this layout.
+On this example above the *banner* area will be the same for all pages using our layout, and *otherPageSpecificArea* area will be different for each page using this layout.
 
 ##HTML map
 
