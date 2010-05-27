@@ -6,8 +6,7 @@ First, we will get and install the latest version of dmWidgetTwitterPlugin. Two 
 ####Use git
 In a command line interface, from your project root dir, run:
 [code]
-cd plugins
-git clone git://github.com/ornicar/dmWidgetTwitterPlugin
+git clone git://github.com/ornicar/dmWidgetTwitterPlugin plugins/dmWidgetTwitterPlugin
 [/code]
 
 or
@@ -67,8 +66,7 @@ Firstly, we will get and install the latest version of dmContactPlugin.
 ####Clone with Git
 In a command line interface, from your project root dir, run:
 [code]
-cd plugins
-git clone git://github.com/ornicar/dmContactPlugin.git
+git clone git://github.com/ornicar/dmContactPlugin.git plugins/dmContactPlugin
 [/code]
 
 or
