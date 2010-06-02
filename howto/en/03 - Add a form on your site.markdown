@@ -215,3 +215,25 @@ if ($sf_user->getFlash('contact_form_valid'))
 
 // ...the form
 [/code]
+
+## Include form assets
+
+If your form declares assets in a Diem fashion, like
+[code php]
+  public function getJavascripts()
+  {
+    return array(
+      'core.tabForm',
+    );
+  }
+[/code]
+
+You should use Diem helpers instead of symfony helpers to include the assets in a template.
+[code php]
+dm_get_javascripts_for_form() instead of get_javascripts_for_form() 
+dm_include_javascripts_for_form() instead of include_javascripts_for_form() 
+dm_get_stylesheets_for_form() instead of get_stylesheets_for_form() 
+dm_include_stylesheets_for_form() instead of include_stylesheets_for_form() 
+[/code]
+
+It is only required if you use Diem asset syntax.
