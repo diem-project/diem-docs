@@ -105,7 +105,7 @@ $query = $this->getListQuery('post')
 If the Post model has a relation to DmMedia named 'Image', you can use the following shortcut:
 [code php]
 $query = $this->getListQuery('post')
-->withMedia('Image');
+->withDmMedia('Image');
 [/code]
 
 ## Customize the list pager
