@@ -26,7 +26,7 @@ Let's create a minimal plugin structure in our project:
 ####schema.yml
 [code]
 DmSimpleBlogPost:
-  actAs:              [ Timestampable, Sortable, DmVersionable ]
+  actAs:              [ Timestampable, DmSortable, DmVersionable ]
   columns:
     name:             { type: string(255), notnull: true }
     resume:           { type: string(255) }
