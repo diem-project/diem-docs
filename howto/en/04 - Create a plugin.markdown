@@ -90,3 +90,63 @@ php symfony dm:setup
 
 Now the plugin is ready.
 Admin and front modules have been created in the plugin dir. Customize them as you do for a normal project.
+
+##Unit testing your plugin
+
+
+###Enable plugin testing
+
+The first thing to do is to connect your plugin tests to your project by using the **setupPlugins** method in your ProjectConfiguration.class.php file.
+
+####config/ProjectConfiguration.class.php
+[code]
+public function setupPlugins()
+{
+  $this->pluginConfigurations['dmSimpleBlogPlugin']->connectTests();
+}
+[/code]
+
+
+###Create the test files
+
+Then create a **test/unit** directory into your plugin directory. In this directory, you will create a dmSimpleBlogTest.php file.
+
+####test/unit/dmSimpleBlogTest.php
+[code]
+<?php
+
+require_once(dirname(__FILE__).'/helper/dmSimpleBlogUnitTestHelper.php');
+
+$helper = new dmSimpleBlogUnitTestHelper();
+$helper->boot();
+
+$t = new lime_test();
+
+$t->comment('Testing dmSimpleBlog plugin');
+[/code]
+
+You've certainly noticed that we include a file (dmSimpleBlogUnitTestHelper.php) under a directory called helper. This file will be used to bootstrap the unit test.
+So let's create a helper directory under your test/unit directory, and put the dmSimpleBlogUnitTestHelper.php in it.
+
+####test/unit/helper/dmSimpleBlogUnitTestHelper.php
+[code]
+<?php
+
+require_once(getcwd() .'/config/ProjectConfiguration.class.php');
+
+require_once(dm::getDir().'/dmCorePlugin/test/unit/helper/dmUnitTestHelper.php');
+
+class dmNewsUnitTestHelper extends dmUnitTestHelper
+{
+  protected
+  $limeTest;
+  
+  public function setLimeTest(lime_test $t)
+  {
+    $this->limeTest = $t;
+  }
+}
+[/code]
+
+Quite simple isn't it ? It just extends the Diem unit test base class. You can use this class for whatever you want. For example, it can be a good place
+to create the objects needed for your test. Then you just have do like usual for writing your unit tests the symfony way.
