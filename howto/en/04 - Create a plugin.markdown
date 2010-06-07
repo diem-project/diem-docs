@@ -99,7 +99,8 @@ Admin and front modules have been created in the plugin dir. Customize them as y
 The first thing to do is to connect your plugin tests to your project by using the **setupPlugins** method in your ProjectConfiguration.class.php file.
 
 ####config/ProjectConfiguration.class.php
-[code]
+[code php]
+
 public function setupPlugins()
 {
   $this->pluginConfigurations['dmSimpleBlogPlugin']->connectTests();
@@ -112,8 +113,7 @@ public function setupPlugins()
 Then create a **test/unit** directory into your plugin directory. In this directory, you will create a dmSimpleBlogTest.php file.
 
 ####test/unit/dmSimpleBlogTest.php
-[code]
-<?php
+[code php]
 
 require_once(dirname(__FILE__).'/helper/dmSimpleBlogUnitTestHelper.php');
 
@@ -129,8 +129,7 @@ You've certainly noticed that we include a file (dmSimpleBlogUnitTestHelper.php)
 So let's create a helper directory under your test/unit directory, and put the dmSimpleBlogUnitTestHelper.php in it.
 
 ####test/unit/helper/dmSimpleBlogUnitTestHelper.php
-[code]
-<?php
+[code php]
 
 require_once(getcwd() .'/config/ProjectConfiguration.class.php');
 
