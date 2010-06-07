@@ -136,7 +136,7 @@ require_once(getcwd() .'/config/ProjectConfiguration.class.php');
 
 require_once(dm::getDir().'/dmCorePlugin/test/unit/helper/dmUnitTestHelper.php');
 
-class dmNewsUnitTestHelper extends dmUnitTestHelper
+class dmSimpleBlogUnitTestHelper extends dmUnitTestHelper
 {
   protected
   $limeTest;
@@ -150,3 +150,10 @@ class dmNewsUnitTestHelper extends dmUnitTestHelper
 
 Quite simple isn't it ? It just extends the Diem unit test base class. You can use this class for whatever you want. For example, it can be a good place
 to create the objects needed for your test. Then you just have do like usual for writing your unit tests the symfony way.
+
+###Launch the test
+
+In your project directory, just launch the test as usual :
+[code]
+php symfony test:unit dmSimpleBlog
+[/code]
