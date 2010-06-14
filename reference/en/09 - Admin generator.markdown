@@ -117,3 +117,72 @@ Diem will automatically add an **history** button on the post admin form. In the
 - browse the post versions
 - see the changes between two versions with visual diffs
 - revert the post to an older version
+
+## Filtering dates
+
+### Special widget
+For filtering dates Diem comes with a special widget, more user friendly, in which you choose between "Today", "Past 7 days", "This month" and "This year".
+
+### symfony common date widget
+You can also use the default symfony date filter widget, less user-friendly but more precise.
+
+In the configure function of the form filter:
+[code php]
+  public function configure()
+  {
+    $this->widgetSchema['created_at'] = new sfWidgetFormFilterDate(array(
+      'from_date' => new sfWidgetFormDate(),
+      'to_date' => new sfWidgetFormDate(),
+      'with_empty' => true
+    ));
+    $this->validatorSchema['created_at'] = new sfValidatorDateRange(array(
+      'required' => false,
+      'from_date' => new sfValidatorDate(array('required' => false)),
+      'to_date' => new sfValidatorDate(array('required' => false))
+    ));
+  }
+[/code]
+
+### Diem datepicker widget
+Also it's possible to use Diem datepicker widget, but it's a little bit tricky because by default javascript don't work in ajax filters.
+
+In the configure function of the form filter:
+[code php]
+  public function configure()
+  {
+    $this->widgetSchema['created_at'] = new sfWidgetFormFilterDate(array(
+      'from_date' => new sfWidgetFormDmDate(array(), array("style" => "float:none")),
+      'to_date' => new sfWidgetFormDmDate(array(), array("style" => "float:none")),
+      'template' => '%from_date% - %to_date% (from - to)',
+      'with_empty' => true
+    ));
+    $this->validatorSchema['created_at'] = new sfValidatorDateRange(array(
+      'required' => false,
+      'from_date' => new dmValidatorDate(array('required' => false)),
+      'to_date' => new dmValidatorDate(array('required' => false))
+    ));
+  }
+[/code]
+
+You need to include the libraries of the datepicker in the view.yml:
+[code]
+/apps/admin/config/view.yml
+  stylesheets:
+    - lib.ui-datepicker
+
+  javascripts:
+    - admin
+    - lib.ui-i18n
+    - lib.ui-datepicker
+[/code]
+
+And in the admin.js, add a line with the live() function for enabling javascript in ajax filters:
+[code]
+/web/js/admin.js
+
+$(function(){
+	$('input.datepicker_me').live('click', function() {
+		$(this).datepicker({showOn:'focus'}).focus();
+	});
+});
+[/code]
