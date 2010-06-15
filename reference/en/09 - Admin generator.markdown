@@ -181,8 +181,8 @@ And in the admin.js, add a line with the live() function for enabling javascript
 /web/js/admin.js
 
 $(function(){
-	$('input.datepicker_me').live('click', function() {
-		$(this).datepicker({showOn:'focus'}).focus();
+	$('input.datepicker_me').live('focus', function() {
+		$(this).datepicker();
 	});
 });
 [/code]
