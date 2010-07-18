@@ -463,6 +463,76 @@ _media($product->Image)
 ->quality(95)
 [/code]
 
+## Table helper : create a table
+
+### Basic example
+
+### Basic example
+              
+[code php]      
+
+	$titles = array('table title');
+	$data = array('row1');
+
+	echo _table('.data_table')->head($titles)->body($data);
+
+[/code]         
+
+### Example with multiple rows
+
+[code php]      
+
+	$titles = array('table title col1', 'table title col2');
+	$data = array(array('row1 - col1', 'row1 - col2'), array('row2 - col1', 'row2 - col2'));
+
+	$table = _table('.data_table')->head($titles);
+
+	foreach ($data as $row)
+	{
+	  $table->body($row);
+	}
+
+	echo $table;
+
+[/code]         
+
+### Example with prensentation
+
+[code php]
+
+$table = _table('.data_table')->head(
+  __('Plugin'),
+  __('Status'),
+  __('Users'),
+  __('Author'),
+  __('Created')
+);
+
+foreach ($pluginPager as $plugin)
+{
+  $table->body(
+
+    _tag('h2.t_plugin', _link($plugin))._tag('p', $plugin->resume),
+
+    //implode(', ', $plugin->brancheNumbers),
+
+    _media($plugin->isDone ? 'check.png' : 'gear.png')
+    ->alt($plugin->isDone ? 'Ready' : 'Work in progress'),
+
+    $plugin->count_usages,
+
+    $plugin->CreatedBy->username,
+
+    date('Y/m/d', strtotime($plugin->createdAt))
+
+  );
+}
+
+echo $table;
+
+[/code]
+
+
 ## Form helpers
 [Symfony way](http://www.symfony-project.org/forms/1_2/en/03-Forms-for-web-Designers) to display forms is great, and enough extensible to make it even greatest.
 We will see here Diem additions to form rendering.
